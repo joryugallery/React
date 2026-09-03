@@ -1,0 +1,211 @@
+@keyframes rainbow-bg {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(-10px) rotate(-6deg); }
+    50%      { transform: translateY(2px) rotate(4deg); }
+    75%      { transform: translateY(-6px) rotate(-3deg); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50%      { transform: rotate(2deg); }
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fly-right {
+    0%   { transform: translate(-10vw, 0) rotate(0deg) scaleX(1); }
+    48%  { transform: translate(55vw, -60px) rotate(8deg) scaleX(1); }
+    50%  { transform: translate(58vw, -60px) rotate(8deg) scaleX(-1); }
+    100% { transform: translate(110vw, -20px) rotate(-4deg) scaleX(-1); }
+}
+
+@keyframes fly-left {
+    0%   { transform: translate(110vw, 0) rotate(0deg) scaleX(-1); }
+    48%  { transform: translate(45vw, 40px) rotate(-6deg) scaleX(-1); }
+    50%  { transform: translate(42vw, 40px) rotate(-6deg) scaleX(1); }
+    100% { transform: translate(-10vw, 10px) rotate(4deg) scaleX(1); }
+}
+
+@keyframes peck {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(3px) rotate(4deg); }
+}
+
+@keyframes poop-drop {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+    5%   { opacity: 1; }
+    85%  { opacity: 1; transform: translateY(140px) rotate(180deg); }
+    95%  { opacity: 0; transform: translateY(150px) rotate(200deg); }
+    100% { opacity: 0; transform: translateY(150px); }
+}
+
+.clock-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #ff2ee6, #ff9f1c, #ffe600, #2ee6a0, #2e8bff, #b23dff, #ff2ee6);
+    background-size: 400% 400%;
+    animation: rainbow-bg 12s ease infinite;
+    font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+    padding: 24px;
+    overflow: hidden;
+}
+
+.clock-page::before,
+.clock-page::after {
+    position: fixed;
+    font-size: 40px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.clock-page::before {
+    content: '🐦';
+    top: 15%;
+    left: 0;
+    animation: fly-right 9s linear infinite;
+}
+
+.clock-page::after {
+    content: '🕊️';
+    top: 65%;
+    left: 0;
+    font-size: 44px;
+    animation: fly-left 13s linear infinite;
+    animation-delay: 2s;
+}
+
+.clock-card {
+    position: relative;
+    width: min(560px, 100%);
+    padding: 56px 40px;
+    border-radius: 32px;
+    background: #ffffff;
+    border: 6px solid #111;
+    box-shadow: 12px 12px 0 #111;
+    overflow: visible;
+    text-align: center;
+    transform: rotate(-1deg);
+}
+
+.clock-card::before {
+    content: '🕊️';
+    position: absolute;
+    top: -34px;
+    right: 60px;
+    font-size: 38px;
+    transform-origin: bottom center;
+    animation: peck 1.8s ease-in-out infinite;
+    z-index: 5;
+}
+
+.clock-card::after {
+    content: '💩';
+    position: absolute;
+    top: -6px;
+    right: 78px;
+    font-size: 18px;
+    z-index: 4;
+    animation: poop-drop 3.6s ease-in infinite;
+}
+
+.clock-grid {
+    position: absolute;
+    inset: 0;
+    border-radius: 26px;
+    overflow: hidden;
+    background-image: radial-gradient(#111 2px, transparent 2px);
+    background-size: 22px 22px;
+    opacity: 0.06;
+    pointer-events: none;
+}
+
+.clock-dept {
+    position: relative;
+    margin: 0 0 30px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #111;
+    animation: wiggle 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.clock-time {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 2px;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+    font-size: clamp(48px, 10vw, 78px);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.digit {
+    display: inline-block;
+    color: #ff2ee6;
+    -webkit-text-stroke: 2px #111;
+    text-shadow: 4px 4px 0 #ffe600;
+    animation: bounce 1.4s ease-in-out infinite;
+}
+.digit:nth-child(2n)   { color: #2e8bff; animation-delay: 0.1s; }
+.digit:nth-child(3n)   { color: #2ee6a0; animation-delay: 0.2s; }
+.digit:nth-child(4n)   { color: #ff9f1c; animation-delay: 0.3s; }
+.digit:nth-child(5n)   { color: #b23dff; animation-delay: 0.4s; }
+
+.colon {
+    display: inline-block;
+    color: #111;
+    animation: pop 1s steps(2) infinite;
+    padding: 0 4px;
+}
+
+.clock-date {
+    position: relative;
+    margin: 26px 0 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #444;
+}
+
+.clock-date::after {
+    content: '🐦';
+    margin-left: 8px;
+    display: inline-block;
+    animation: peck 1.2s ease-in-out infinite;
+}
+
+.clock-tag {
+    position: relative;
+    margin-top: 26px;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 3px solid #111;
+    background: #ffe600;
+    color: #111;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    font-weight: 900;
+    box-shadow: 4px 4px 0 #111;
+    transform: rotate(2deg);
+}
+
+@media (max-width: 480px) {
+    .clock-card { padding: 40px 20px; transform: rotate(0deg); }
+    .clock-page::before, .clock-page::after { font-size: 28px; }
+}
