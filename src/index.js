@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Clock from "./04/clock";
+// import Clock from "./04/clock";
+// import ConfirmDialog from "./04/ConfirmDialog";
+// import ConfirmDialogList from "./04/ConfirmDialogList";
+// import Booklist from "./05/exam2/Booklist";
+import UserInfoList from "./05/exam03/UserInfoList";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
     root.render(
         <React.StrictMode>
-            <Clock/>
+            <UserInfoList/>
         </React.StrictMode>
     );
     }, 1000
