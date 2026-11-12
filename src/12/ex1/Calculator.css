@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap");
+
+* { box-sizing: border-box; }
+
+.calc-wrap {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    font-family: "Pretendard", system-ui, sans-serif;
+    transition: background 0.8s ease;
+}
+.calc-wrap.cold {
+    background: radial-gradient(circle at 30% 20%, #1e3a8a, #0b1120 70%);
+}
+.calc-wrap.hot {
+    background: radial-gradient(circle at 30% 20%, #b91c1c, #1a0505 70%);
+}
+
+/* 카드 (유리 느낌) */
+.calc-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0;
+    padding: 36px 28px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    transition: box-shadow 0.6s ease;
+}
+.hot .calc-card {
+    box-shadow: 0 0 40px rgba(255, 80, 30, 0.5), 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: shake 0.4s infinite;
+}
+
+.calc-legend {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+/* 입력창 */
+.calc-input-box {
+    position: relative;
+    margin-top: 12px;
+}
+.calc-input {
+    width: 100%;
+    padding: 18px 64px 18px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-size: 40px;
+    font-weight: 800;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.calc-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+.cold .calc-input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.3);
+}
+.hot .calc-input:focus {
+    border-color: #fb923c;
+    box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.35);
+}
+/* number 화살표 제거 */
+.calc-input::-webkit-outer-spin-button,
+.calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.calc-input[type="number"] { -moz-appearance: textfield; }
+
+.calc-unit {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+/* 온도 게이지 */
+.calc-gauge {
+    height: 10px;
+    margin: 20px 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+.calc-gauge-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #38bdf8, #a78bfa, #f97316, #ef4444);
+    background-size: 420px 100%;
+    transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 판정 박스 */
+.verdict {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+}
+.verdict p { position: relative; z-index: 1; margin: 0; }
+
+.verdict.calm {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(99, 102, 241, 0.25));
+    color: #bae6fd;
+}
+.verdict.boiling {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* 보글보글 거품 */
+.bubble {
+    position: absolute;
+    bottom: -20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: rise 1.6s ease-in infinite;
+}
+.b1 { left: 10%; width: 10px; height: 10px; animation-delay: 0s; }
+.b2 { left: 35%; width: 16px; height: 16px; animation-delay: 0.4s; }
+.b3 { left: 65%; width: 8px;  height: 8px;  animation-delay: 0.8s; }
+.b4 { left: 85%; width: 13px; height: 13px; animation-delay: 1.2s; }
+
+@keyframes rise {
+    0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translateY(-90px) scale(1.2); opacity: 0; }
+}
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6); }
+    50%      { box-shadow: 0 0 0 12px rgba(249, 115, 22, 0); }
+}
+@keyframes shake {
+    0%, 100% { transform: translate(0, 0); }
+    25%      { transform: translate(-1px, 1px); }
+    75%      { transform: translate(1px, -1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}

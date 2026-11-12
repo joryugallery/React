@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AttendanceCardBook from "./10/AttandenceCardBook";
-import AttandenceCardBook from "./10/AttandenceCardBook";
+import DistanceConverter from "./12/ex5/DistanceConverter";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <AttandenceCardBook/>
+        <DistanceConverter/>
     </React.StrictMode>
 );
 
