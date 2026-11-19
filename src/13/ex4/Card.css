@@ -1,0 +1,37 @@
+.card {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% / 7 - 16px);
+    margin: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;      /* 사각형 테두리 */
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 이름 */
+.card h1 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 사진 */
+.card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* 설명 */
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #717171;
+    line-height: 1.4;
+}
